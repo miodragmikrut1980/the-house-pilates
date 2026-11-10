@@ -75,7 +75,7 @@ function izaberi(d,t){
 if(nedelja){
   crtaj();
   const d=(now.d>=1&&now.d<=5)?now.d:1; const t=R.mini.termini[d]; izaberi(d,t[t.length>1?1:0]);
-  nedelja.addEventListener('click',e=>{if(e.target.closest('.termin')&&innerWidth<1100) $('#kljuc').scrollIntoView({behavior:rm?'auto':'smooth',block:'start'});});
+  nedelja.addEventListener('click',e=>{if(e.isTrusted&&e.target.closest('.termin')&&innerWidth<1100) $('#kljuc').scrollIntoView({behavior:rm?'auto':'smooth',block:'start'});});
 }
 
 /* prekidači sa klizačem */
@@ -102,3 +102,13 @@ $$('[data-godina]').forEach(e=>e.textContent=new Date().getFullYear());
 addEventListener('scroll',()=>{const y=scrollY; if(Math.abs(y-y0)<8) return; d.classList.toggle('skriven', y>y0); y0=y;},{passive:true});})();
 /* v2: otkrij sve što je već iznad dna ekrana (brz skrol, skok na sidro) */
 (()=>{const f=()=>{const h=innerHeight;document.querySelectorAll('.r:not(.in)').forEach(e=>{if(e.getBoundingClientRect().top<h)e.classList.add('in')})};addEventListener('scroll',f,{passive:true});addEventListener('load',f);})();
+/* v2: na telefonu raspored po jedan dan */
+(()=>{const ned=document.getElementById('nedelja'); if(!ned) return;
+const imena=['Pon','Uto','Sre','Čet','Pet'], puna=['Ponedeljak','Utorak','Sreda','Četvrtak','Petak'];
+const t=document.createElement('div'); t.className='dani-tabs'; t.setAttribute('role','group'); t.setAttribute('aria-label','Izaberi dan');
+let akt=Math.max(0,[...ned.children].findIndex(d=>d.classList.contains('danas')));
+t.innerHTML=imena.map((n,i)=>`<button type="button" aria-pressed="${i===akt}" aria-label="${puna[i]}">${n}</button>`).join('');
+ned.parentNode.insertBefore(t,ned);
+const primeni=()=>{[...ned.children].forEach((d,i)=>d.classList.toggle('aktivan',i===akt)); [...t.children].forEach((b,i)=>b.setAttribute('aria-pressed',String(i===akt))); if(innerWidth<=760){const d=ned.children[akt]; if(d&&!d.querySelector('.termin[aria-pressed="true"]')){const x=d.querySelector('.termin'); if(x) setTimeout(()=>x.click(),0);}}};
+t.addEventListener('click',e=>{const b=e.target.closest('button'); if(!b) return; akt=[...t.children].indexOf(b); primeni();});
+new MutationObserver(primeni).observe(ned,{childList:true}); primeni();})();
