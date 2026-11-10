@@ -608,3 +608,8 @@ img.ini{width:100%;height:auto;aspect-ratio:1;border-radius:var(--r);margin-bott
 .e-foto{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:1.6rem}
 .e-foto img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px}
 @media (max-width:760px){.c-slika img{aspect-ratio:3/2}}
+/* futer: ime uvek tačno u širini */
+.f-ime-wrap{display:block;margin-bottom:2.6rem}
+svg.f-ime{display:block;width:100%;height:auto;overflow:visible;margin:0;font-size:inherit;white-space:normal}
+svg.f-ime text{font-family:var(--f-label);font-weight:600;font-size:160px;fill:var(--terakota-sv);letter-spacing:0}
+@media (max-width:760px){.f-ime-wrap{margin-bottom:1.6rem}}
