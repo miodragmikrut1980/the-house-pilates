@@ -468,3 +468,143 @@ img.ini{width:88px;height:88px;border-radius:50%;object-fit:cover;object-positio
 .blok-slika img{aspect-ratio:3/2}
 @media (max-width:960px){.sprave{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:600px){.sprave{grid-template-columns:1fr 1fr}.osoba{grid-template-columns:72px 1fr}img.ini{width:72px;height:72px}}
+
+.dan.danas h3 b.dn{font-weight:600;font-family:var(--f-body);letter-spacing:0;text-transform:none;font-size:.8125rem;background:var(--terakota);color:#fff;padding:.15rem .5rem;border-radius:99px}
+.mesta-mini b{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.25;display:block}
+.mesta-mini b.z{opacity:.9}
+
+/* ================= v2: čistiji sistem ================= */
+:root{
+  --t-display:clamp(3.2rem,7.4vw,6.6rem);
+  --t-h2:clamp(2.3rem,4.6vw,3.9rem);
+  --t-h3:1.7rem;
+  --t-lead:1.2rem;
+  --t-body:1.0625rem;
+  --t-small:.9375rem;
+}
+/* tipografija: pet veličina */
+.hero h1,.p-hero h1,.nema h1{font-size:var(--t-display);letter-spacing:-.025em;line-height:.98}
+h2{font-size:var(--t-h2);letter-spacing:-.02em}
+.soba h3,.program h3,.cena h3,.kljuc h3,.forma h3,.osoba h3,.sprava h3,.vrednosti b,.pravilo b,.tabela caption,.kalk h3,.glas-velik p{font-size:var(--t-h3)}
+.lead,.hero .lead,.p-hero .lead{font-size:var(--t-lead)}
+body,.soba li,.program dl,.cena ul,.sati,.kanal span,.imena span,.osoba p,.sprava p,.legenda,.cene-nap,.napomena,.sed-opis,.za,.program p,.edu-cinjenice span,.brojke span,.trust,.metode span,.tabela th,.tabela td,.polje label,.chip,.skok a,nav.main a,.btn,footer,.predlog,.f-nav a,.termin span,.prazan,.dan h3,.glas-lista li,.izvor,.mapa a,.mapa-ucitaj,.cena .od,.kalk-rez small,.meni-kontakt{font-size:var(--t-small)}
+body{font-size:var(--t-body)}
+.brojke b,.edu-cinjenice b,.cena .iznos,.ocena b,.kalk-rez{font-size:clamp(2.6rem,4vw,3.4rem)}
+.edu-tri{font-size:var(--t-h3)}
+.termin b{font-size:var(--t-body)}
+/* tekst u punom mastilu, sivo samo za sporedno */
+.lead,.soba li,.program p,.osoba p,.sprava p{color:var(--sljiva)}
+.muted{color:#4F5257}
+.lead,.blok p,.program p,.cene-nap,.edu .lead,.dom .lead{max-width:62ch}
+/* bez natpisa velikim slovima */
+.dan h3{font-family:var(--f-body);text-transform:none;letter-spacing:0;font-weight:700;color:var(--sljiva);border-bottom:0;padding-bottom:.4rem}
+.dan.danas h3{color:var(--papir)}
+.dan.danas h3 i{font-size:.8125rem}
+.metode span{font-family:var(--f-body);text-transform:none;letter-spacing:0;font-weight:700}
+.tabela thead th{font-family:var(--f-body);text-transform:none;letter-spacing:0;font-weight:700;color:var(--sljiva)}
+.pogodak-oznaka{font-size:.8125rem}
+.prekidac .duze{display:inline}
+/* bez senki na stvarima koje miruju */
+.btn-t,.kljuc,.dan,.forma,.top.scrolled{box-shadow:none!important}
+.top.scrolled{background:var(--papir)}
+.btn-t:hover{transform:translateY(-2px)}
+/* bez tankih linija: razmak i promena tona */
+.brojke{border-top:0;padding-top:0;margin-top:2.4rem}
+.soba .za,.program .dno{border-top:0;padding-top:.4rem}
+.imena li{border-top:0;padding:.55rem 0}
+.cena li{border-top:0;padding-top:.15rem}
+.koraci li{border-top:0;padding:.7rem 0}
+.blok{border-top:0}
+.blok:nth-of-type(even){background:color-mix(in srgb,var(--ruza) 45%,var(--papir))}
+.sati td{border-top:0;padding:.35rem 0}
+.cene .cena,.cena{box-shadow:none}
+.cena{background:rgba(255,255,255,.07)}
+/* prekidači: obojeno dugme umesto klizača */
+.prekidac .klizac{display:none}
+.prekidac button{transition:background .35s var(--ease),color .35s var(--ease)}
+.prekidac button[aria-selected="true"]{background:var(--sljiva);color:var(--papir)}
+.cene .prekidac button[aria-selected="true"]{background:var(--papir);color:var(--sljiva)}
+/* jedno zamućenje najviše (gornja traka), dock je pun */
+.dock{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:var(--sljiva)}
+.top{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.dock.skriven{transform:translateY(140%)!important}
+/* recenzije: jedna velika izjava i lista */
+.glasovi2{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(2rem,6vw,6rem);align-items:start}
+.glasovi .ocena{margin-top:1.2rem;display:flex;align-items:baseline;gap:.8rem}
+.glas-velik{margin:0}
+.glas-velik p{font-family:var(--f-display);font-size:clamp(1.7rem,2.6vw,2.2rem);line-height:1.25;font-variation-settings:"SOFT" 100}
+.glas-lista{list-style:none;margin:2rem 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:1rem 2rem}
+.glas-lista li{font-family:var(--f-display);font-size:1.2rem;line-height:1.4}
+.izvor{margin-top:1.4rem}
+/* futer: ime preko cele širine */
+.f-ime{font-family:var(--f-label);font-weight:600;letter-spacing:.06em;font-size:clamp(3.4rem,15vw,15rem);line-height:.9;color:var(--terakota-sv);margin:0 auto 2.4rem;white-space:nowrap;overflow:hidden;text-align:center}
+footer{padding-top:4rem}
+/* sobe: na tabletu peta soba preko cele širine */
+@media (min-width:761px) and (max-width:1100px){
+  .grid-sobe .soba:last-child{grid-column:span 12}
+}
+/* osobe: veće fotografije, bez kutija */
+.osobe{grid-template-columns:repeat(4,1fr);gap:1.6rem}
+.osoba{background:none;padding:0;display:block}
+img.ini{width:100%;height:auto;aspect-ratio:1;border-radius:var(--r);margin-bottom:1rem}
+.osoba h3{font-size:1.45rem}
+/* HERO: tablet koristi isti sastav kao telefon (slika gore, tekst ispod) */
+@media (max-width:1100px){
+  .hero{min-height:auto;align-items:end}
+  .hero picture img{object-position:50% 30%}
+  .hero::before{background:linear-gradient(180deg,rgba(250,240,234,0) 30%,rgba(250,240,234,.92) 52%,var(--papir) 66%)}
+  .hero .wrap{padding-top:58vh;padding-bottom:3rem}
+  .hero-txt{max-width:40rem}
+}
+@media (min-width:761px) and (max-width:1100px){
+  .hero .wrap{padding-top:52vh}
+  .hero picture img{object-position:50% 20%}
+}
+/* telefon */
+@media (max-width:760px){
+  .hero h1{font-size:3.1rem}
+  .hero .wrap{padding-top:44vh}
+  .edu-tri{flex-wrap:wrap;gap:.3rem 1.2rem}
+  .edu-tri span{white-space:nowrap}
+  .mapa{aspect-ratio:auto;height:auto;display:grid}
+  .mapa svg{height:180px}
+  .mapa-ucitaj,.mapa a{position:static;margin:.6rem .6rem 0 0;justify-self:start}
+  .mapa{padding-bottom:.8rem;padding-left:.8rem}
+  .mapa svg{margin-left:-.8rem;width:calc(100% + .8rem)}
+  .glasovi2{grid-template-columns:1fr}
+  .glas-lista{grid-template-columns:1fr}
+  .osobe{grid-template-columns:1fr 1fr;gap:1rem}
+  .osoba h3{font-size:1.2rem}
+  .f-ime{font-size:17vw}
+  .nedelja{margin-inline:0;padding-inline:0;grid-auto-columns:82%}
+}
+@media (max-width:960px) and (min-width:761px){.osobe{grid-template-columns:repeat(2,1fr)}}
+/* v2 runda 2 */
+.btn-o{box-shadow:none!important;border:1.5px solid rgba(62,37,40,.4)}
+.btn-o:hover{border-color:var(--sljiva)}
+.dock .btn-o{border-color:rgba(255,255,255,.35)}
+.chip{box-shadow:none!important;border:1.5px solid rgba(62,37,40,.2);background:rgba(255,255,255,.55)}
+.chip:hover{border-color:var(--terakota)}
+.predlog{border-top:0;padding-top:.4rem}
+.cena .iznos{margin:.4rem 0 0}
+.cena .od{margin-bottom:.4rem}
+@media (max-width:760px){
+  .glas-velik p{font-size:1.45rem}
+  /* raspored na telefonu: dani jedan ispod drugog, termini u redu */
+  .nedelja{display:grid;grid-auto-flow:row;grid-template-columns:1fr;overflow:visible;gap:.6rem}
+  .dan{display:grid;grid-template-columns:3.2rem 1fr;align-items:start;gap:.6rem;padding:.8rem}
+  .dan h3{padding:.7rem 0 0;margin:0;flex-direction:column;align-items:flex-start;gap:.3rem}
+  .dan .t-red{display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem}
+  .dan .termin{margin:0;min-height:56px;padding:.55rem .5rem}
+  .dan .termin span{font-size:.8125rem}
+}
+/* v2 runda 3 */
+.program p,.osoba p,.sprava p,.soba li,.program dl{font-size:var(--t-body)}
+.predlog,.cene-nap{max-width:75ch}
+.c-slika{margin:1.6rem 0 0;border-radius:var(--r);overflow:hidden}
+.c-slika img{width:100%;aspect-ratio:21/8;object-fit:cover}
+.kalk-rez{font-size:var(--t-body)}
+.kalk-rez .kb{display:block;font-family:var(--f-display);font-weight:300;font-size:clamp(2.6rem,4vw,3.4rem);line-height:1;color:var(--terakota-sv)}
+.e-foto{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:1.6rem}
+.e-foto img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px}
+@media (max-width:760px){.c-slika img{aspect-ratio:3/2}}

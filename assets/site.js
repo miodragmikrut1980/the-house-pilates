@@ -56,8 +56,8 @@ function crtaj(){
   if(!nedelja) return;
   $('#legenda-txt').textContent=vrsta==='mini'?'Mini grupa: najviše 5 osoba, na spravama.':'Velika grupa: pilates na strunjačama, sa rekvizitima.';
   nedelja.innerHTML=[1,2,3,4,5].map(d=>{const t=R[vrsta].termini[d]||[]; const danas=d===now.d;
-    return `<div class="dan${danas?' danas':''}"><h3>${krat[d]}${danas?'<i>danas</i>':''}</h3>${t.length?t.map(h=>{const z=zauzeto(vrsta,d,h), k=R[vrsta].kap, sl=k-z; const sel=izbor&&izbor.d===d&&izbor.t===h&&izbor.v===vrsta;
-      return `<button class="termin" aria-pressed="${sel}" data-d="${d}" data-t="${h}" aria-label="${dani[d]} ${h}, ${nazivTermina(vrsta,d,h)}, slobodno ${sl} od ${k}"><b>${h}</b><span>${nazivTermina(vrsta,d,h)} · ${sl} ${slob(sl)}</span>${vrsta==='mini'?`<span class="mesta-mini" aria-hidden="true">${Array.from({length:k},(_,i)=>`<i class="${i<z?'z':''}"></i>`).join('')}</span>`:''}</button>`}).join(''):'<p class="prazan">Nema grupnih termina. Individualni po dogovoru.</p>'}</div>`}).join('');
+    return `<div class="dan${danas?' danas':''}"><h3>${krat[d]}${danas?'<b class="dn">danas</b>':''}</h3><div class="t-red">${t.length?t.map(h=>{const z=zauzeto(vrsta,d,h), k=R[vrsta].kap, sl=k-z; const sel=izbor&&izbor.d===d&&izbor.t===h&&izbor.v===vrsta;
+      return `<button class="termin" aria-pressed="${sel}" data-d="${d}" data-t="${h}" aria-label="${dani[d]} ${h}, ${nazivTermina(vrsta,d,h)}, slobodno ${sl} od ${k}"><b>${h}</b><span>${nazivTermina(vrsta,d,h)} · ${sl} ${slob(sl)}</span>${vrsta==='mini'?`<span class="mesta-mini" aria-hidden="true">${Array.from({length:k},(_,i)=>`<b class="${i<z?'z':''}"></b>`).join('')}</span>`:''}</button>`}).join(''):'<p class="prazan">Nema grupnih termina. Individualni po dogovoru.</p>'}</div></div>`}).join('');
   $$('.termin',nedelja).forEach(b=>b.addEventListener('click',()=>izaberi(+b.dataset.d,b.dataset.t)));
 }
 function izaberi(d,t){
@@ -96,3 +96,9 @@ $$('.mapa-ucitaj').forEach(b=>b.addEventListener('click',()=>{const m=b.closest(
 /* godina u futeru */
 $$('[data-godina]').forEach(e=>e.textContent=new Date().getFullYear());
 })();
+
+/* v2: dock se sklanja dok skroluješ nadole, vraća se kad kreneš nagore */
+(()=>{const d=document.getElementById('dock'); if(!d) return; let y0=scrollY;
+addEventListener('scroll',()=>{const y=scrollY; if(Math.abs(y-y0)<8) return; d.classList.toggle('skriven', y>y0); y0=y;},{passive:true});})();
+/* v2: otkrij sve što je već iznad dna ekrana (brz skrol, skok na sidro) */
+(()=>{const f=()=>{const h=innerHeight;document.querySelectorAll('.r:not(.in)').forEach(e=>{if(e.getBoundingClientRect().top<h)e.classList.add('in')})};addEventListener('scroll',f,{passive:true});addEventListener('load',f);})();
