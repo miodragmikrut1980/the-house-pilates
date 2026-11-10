@@ -613,3 +613,66 @@ img.ini{width:100%;height:auto;aspect-ratio:1;border-radius:var(--r);margin-bott
 svg.f-ime{display:block;width:100%;height:auto;overflow:visible;margin:0;font-size:inherit;white-space:normal}
 svg.f-ime text{font-family:var(--f-label);font-weight:600;font-size:160px;fill:var(--terakota-sv);letter-spacing:0}
 @media (max-width:760px){.f-ime-wrap{margin-bottom:1.6rem}}
+/* ===== kraći sajt ===== */
+.tim-linkovi{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.6rem}
+.sati-kratko{display:none}
+.dom .lead.muted{display:none}
+@media (min-width:761px){
+  .pad{padding:clamp(4.5rem,8vw,7rem) 0}
+  .blok{padding:clamp(3rem,6vw,5rem) 0}
+}
+@media (max-width:760px){
+  .pad{padding:3.6rem 0}
+  .blok{padding:2.8rem 0}
+  .p-hero{padding:6.5rem 0 2rem}
+  .p-hero .luk{display:none}
+  /* dobro došla: bez velikog crteža luka */
+  .krov{display:none}
+  .brojke{margin-top:1.6rem}
+  /* sobe: kratke kartice, detalji su na strani Programi */
+  .grid-sobe{margin-top:1.6rem;gap:.7rem}
+  .soba ul,.soba .za{display:none}
+  .soba{padding:1.2rem 1.3rem;gap:.4rem}
+  .soba.velika .t{padding:1.1rem 1.3rem 1.2rem;gap:.4rem}
+  .soba.velika img{aspect-ratio:16/9}
+  .soba h3{font-size:1.4rem;margin:0}
+  .vodic{margin-top:1.4rem}
+  /* cene: dve kolone, samo početna cena */
+  .cenovnik{grid-template-columns:1fr 1fr;gap:.6rem;margin-top:1.6rem}
+  .cena{padding:1.1rem}
+  .cena ul{display:none}
+  .cena h3{font-size:1.2rem}
+  .cena .iznos,.cena .iznos{font-size:2.3rem}
+  .cene-nap{margin-top:1.2rem}
+  /* tim: imena i metode su na strani Studio */
+  .tim .imena,.tim .metode,.tim .lead{display:none}
+  .tim{gap:1.4rem}
+  /* recenzije: veliki citat i dve kraće */
+  .glas-lista li:nth-child(n+3){display:none}
+  .glas-lista{margin-top:1.2rem}
+  /* kontakt: kratko radno vreme, bez crteža mape */
+  .sati{display:none}
+  .sati-kratko{display:block;margin-top:1.2rem;font-weight:700;color:var(--ruza)}
+  .kanali{margin-top:1.4rem;gap:.6rem}
+  .kanal{min-height:56px;padding:.7rem 1rem}
+  .mapa svg{display:none}
+  .mapa{background:none;padding:0;margin-top:1rem;display:flex;flex-wrap:wrap;gap:.6rem}
+  .mapa-ucitaj,.mapa a{margin:0}
+  .mapa.ziva{display:block;aspect-ratio:4/3}
+  .forma{padding:1.3rem}
+  #k-por{min-height:0}
+  /* programi: kraće kartice */
+  .program dl{display:none}
+  .program{padding:1.2rem 1.3rem;gap:.5rem}
+  .programi{gap:.7rem;margin-top:1.4rem}
+  .blok-head{gap:1rem}
+  .blok-slika img{aspect-ratio:16/9}
+  /* raspored: niži termini */
+  .dan .termin{min-height:50px}
+  .rasp-grid{margin-top:1.6rem}
+}
+@media (min-width:761px){
+  .soba.velika img{aspect-ratio:16/10}
+  .grid-sobe{margin-top:2rem}
+}
+@media (max-width:760px){.prekidac .duze{display:none}}
