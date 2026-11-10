@@ -460,3 +460,11 @@ body.meni-on{overflow:hidden}
 .soba.velika .t{display:flex;flex-direction:column;gap:.9rem}
 .meni a.btn{display:flex;align-items:center;justify-content:center;font-family:var(--f-body);font-size:1rem;padding:0 1.6rem}
 .meni .meni-kontakt a{display:inline;font-family:inherit;font-size:inherit;padding:0;font-weight:700;color:var(--sljiva)}
+/* prave fotografije */
+.osoba{grid-template-columns:88px 1fr}
+img.ini{width:88px;height:88px;border-radius:50%;object-fit:cover;object-position:50% 30%}
+.sprave{grid-template-columns:repeat(5,1fr)}
+.sprava img{width:100%;aspect-ratio:1;object-fit:contain;background:#fff;border-radius:12px;margin-bottom:.8rem}
+.blok-slika img{aspect-ratio:3/2}
+@media (max-width:960px){.sprave{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:600px){.sprave{grid-template-columns:1fr 1fr}.osoba{grid-template-columns:72px 1fr}img.ini{width:72px;height:72px}}
