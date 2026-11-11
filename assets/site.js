@@ -114,3 +114,16 @@ t.addEventListener('click',e=>{const b=e.target.closest('button'); if(!b) return
 new MutationObserver(primeni).observe(ned,{childList:true}); primeni();})();
 /* Ivana: logo u heroju se iscrtava odmah po učitavanju */
 (()=>{const h=document.querySelector('.hero-znak .iv-anim'); if(h) requestAnimationFrame(()=>setTimeout(()=>h.classList.add('go'),250));})();
+
+/* D: zeleni potez kroz stranu, iscrtava se dok skroluješ */
+(()=>{const m=document.querySelector('main'); if(!m) return;
+const ns='http://www.w3.org/2000/svg', s=document.createElementNS(ns,'svg'); s.setAttribute('class','nit'); s.setAttribute('aria-hidden','true');
+const p=document.createElementNS(ns,'path'), t=document.createElementNS(ns,'path'); t.setAttribute('class','t'); s.append(p,t); m.prepend(s);
+const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function crtaj(){const W=m.clientWidth,H=m.scrollHeight; s.setAttribute('viewBox',`0 0 ${W} ${H}`); s.style.height=H+'px';
+ const secs=[...m.querySelectorAll(':scope > section')]; let d=`M ${W*.08} ${innerHeight*.9}`; let left=true;
+ secs.forEach((sec,i)=>{if(i===0) return; const y=sec.offsetTop; const x1=left?W*.94:W*.06; d+=` C ${left?W*.2:W*.8} ${y-120}, ${left?W*.75:W*.25} ${y+60}, ${x1} ${y+140}`; left=!left;});
+ d+=` L ${left?W*.1:W*.9} ${H-40}`;
+ p.setAttribute('d',d); t.setAttribute('d',d); const L=p.getTotalLength(); [p,t].forEach(e=>{e.style.strokeDasharray=L; e.style.strokeDashoffset=rm?0:L;}); s.dataset.L=L;}
+function sk(){if(rm) return; const L=+s.dataset.L; const max=document.body.scrollHeight-innerHeight; const pr=Math.min(1,(scrollY+innerHeight*.6)/(max+innerHeight*.6)); p.style.strokeDashoffset=L*(1-pr); t.style.strokeDashoffset=L*(1-Math.min(1,pr*1.08));}
+crtaj(); sk(); addEventListener('scroll',sk,{passive:true}); addEventListener('resize',()=>{crtaj();sk();}); addEventListener('load',()=>{crtaj();sk();});})();
