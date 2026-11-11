@@ -56,8 +56,8 @@ function crtaj(){
   if(!nedelja) return;
   $('#legenda-txt').textContent=vrsta==='mini'?'Mini grupa: najviše 5 osoba, na spravama.':'Velika grupa: pilates na strunjačama, sa rekvizitima.';
   nedelja.innerHTML=[1,2,3,4,5].map(d=>{const t=R[vrsta].termini[d]||[]; const danas=d===now.d;
-    return `<div class="dan${danas?' danas':''}"><h3>${krat[d]}${danas?'<i>danas</i>':''}</h3>${t.length?t.map(h=>{const z=zauzeto(vrsta,d,h), k=R[vrsta].kap, sl=k-z; const sel=izbor&&izbor.d===d&&izbor.t===h&&izbor.v===vrsta;
-      return `<button class="termin" aria-pressed="${sel}" data-d="${d}" data-t="${h}" aria-label="${dani[d]} ${h}, ${nazivTermina(vrsta,d,h)}, slobodno ${sl} od ${k}"><b>${h}</b><span>${nazivTermina(vrsta,d,h)} · ${sl} ${slob(sl)}</span>${vrsta==='mini'?`<span class="mesta-mini" aria-hidden="true">${Array.from({length:k},(_,i)=>`<i class="${i<z?'z':''}"></i>`).join('')}</span>`:''}</button>`}).join(''):'<p class="prazan">Nema grupnih termina. Individualni po dogovoru.</p>'}</div>`}).join('');
+    return `<div class="dan${danas?' danas':''}"><h3>${krat[d]}${danas?'<b class="dn">danas</b>':''}</h3><div class="t-red">${t.length?t.map(h=>{const z=zauzeto(vrsta,d,h), k=R[vrsta].kap, sl=k-z; const sel=izbor&&izbor.d===d&&izbor.t===h&&izbor.v===vrsta;
+      return `<button class="termin" aria-pressed="${sel}" data-d="${d}" data-t="${h}" aria-label="${dani[d]} ${h}, ${nazivTermina(vrsta,d,h)}, slobodno ${sl} od ${k}"><b>${h}</b><span>${nazivTermina(vrsta,d,h)} · ${sl} ${slob(sl)}</span>${vrsta==='mini'?`<span class="mesta-mini" aria-hidden="true">${Array.from({length:k},(_,i)=>`<b class="${i<z?'z':''}"></b>`).join('')}</span>`:''}</button>`}).join(''):'<p class="prazan">Nema grupnih termina. Individualni po dogovoru.</p>'}</div></div>`}).join('');
   $$('.termin',nedelja).forEach(b=>b.addEventListener('click',()=>izaberi(+b.dataset.d,b.dataset.t)));
 }
 function izaberi(d,t){
@@ -75,7 +75,7 @@ function izaberi(d,t){
 if(nedelja){
   crtaj();
   const d=(now.d>=1&&now.d<=5)?now.d:1; const t=R.mini.termini[d]; izaberi(d,t[t.length>1?1:0]);
-  nedelja.addEventListener('click',e=>{if(e.target.closest('.termin')&&innerWidth<1100) $('#kljuc').scrollIntoView({behavior:rm?'auto':'smooth',block:'start'});});
+  nedelja.addEventListener('click',e=>{if(e.isTrusted&&e.target.closest('.termin')&&innerWidth<1100) $('#kljuc').scrollIntoView({behavior:rm?'auto':'smooth',block:'start'});});
 }
 
 /* prekidači sa klizačem */
@@ -87,7 +87,7 @@ document.fonts&&document.fonts.ready.then(()=>$$('.prekidac').forEach(klizac));
 /* validacija i forme (demo: ništa se ne šalje) */
 const proveri=(inp,msg)=>{const g=inp.parentElement.querySelector('.greska'); const ok=inp.type==='tel'?/^[+0-9 ()\/-]{8,}$/.test(inp.value.trim()):inp.value.trim().length>1; g.textContent=ok?'':msg; inp.setAttribute('aria-invalid',String(!ok)); return ok;};
 const fr=$('#forma-rez');
-if(fr) fr.addEventListener('submit',e=>{e.preventDefault(); const a=proveri($('#r-ime'),'Upiši ime i prezime.'), b=proveri($('#r-tel'),'Upiši broj telefona, npr. 064 123 4567.'); if(!izbor){$('#izabrano').textContent='Prvo izaberi termin u rasporedu.';return;} if(a&&b){$('#potvrda-txt').textContent=`${dani[izbor.d]}, ${izbor.t}${sediste&&izbor.v==='mini'?`, mesto ${sediste}`:''}. Vidimo se u kući, ${$('#r-ime').value.trim().split(' ')[0]}.`; $('#kljuc').classList.add('gotovo'); requestAnimationFrame(()=>$('#kljuc .potvrda').classList.add('in'));}});
+if(fr) fr.addEventListener('submit',e=>{e.preventDefault(); const a=proveri($('#r-ime'),'Upiši ime i prezime.'), b=proveri($('#r-tel'),'Upiši broj telefona, npr. 064 123 4567.'); if(!izbor){$('#izabrano').textContent='Prvo izaberi termin u rasporedu.';return;} if(a&&b){$('#potvrda-txt').textContent=`${dani[izbor.d]}, ${izbor.t}${sediste&&izbor.v==='mini'?`, mesto ${sediste}`:''}. Vidimo se u studiju, ${$('#r-ime').value.trim().split(' ')[0]}.`; $('#kljuc').classList.add('gotovo'); requestAnimationFrame(()=>$('#kljuc .potvrda').classList.add('in'));}});
 $$('.forma').forEach(f=>{const form=$('form',f); if(!form) return; form.addEventListener('submit',e=>{e.preventDefault(); const ok=$$('input[required]',form).map(i=>proveri(i,i.type==='tel'?'Upiši broj telefona.':'Upiši ime.')).every(Boolean); if(ok){f.classList.add('gotovo'); f.scrollIntoView({behavior:rm?'auto':'smooth',block:'center'});}});});
 
 /* mapa: učitaj tek na klik (bez kolačića pre pristanka) */
@@ -96,3 +96,21 @@ $$('.mapa-ucitaj').forEach(b=>b.addEventListener('click',()=>{const m=b.closest(
 /* godina u futeru */
 $$('[data-godina]').forEach(e=>e.textContent=new Date().getFullYear());
 })();
+
+/* v2: dock se sklanja dok skroluješ nadole, vraća se kad kreneš nagore */
+(()=>{const d=document.getElementById('dock'); if(!d) return; let y0=scrollY;
+addEventListener('scroll',()=>{const y=scrollY; if(Math.abs(y-y0)<8) return; d.classList.toggle('skriven', y>y0); y0=y;},{passive:true});})();
+/* v2: otkrij sve što je već iznad dna ekrana (brz skrol, skok na sidro) */
+(()=>{const f=()=>{const h=innerHeight;document.querySelectorAll('.r:not(.in)').forEach(e=>{if(e.getBoundingClientRect().top<h)e.classList.add('in')})};addEventListener('scroll',f,{passive:true});addEventListener('load',f);})();
+/* v2: na telefonu raspored po jedan dan */
+(()=>{const ned=document.getElementById('nedelja'); if(!ned) return;
+const imena=['Pon','Uto','Sre','Čet','Pet'], puna=['Ponedeljak','Utorak','Sreda','Četvrtak','Petak'];
+const t=document.createElement('div'); t.className='dani-tabs'; t.setAttribute('role','group'); t.setAttribute('aria-label','Izaberi dan');
+let akt=Math.max(0,[...ned.children].findIndex(d=>d.classList.contains('danas')));
+t.innerHTML=imena.map((n,i)=>`<button type="button" aria-pressed="${i===akt}" aria-label="${puna[i]}">${n}</button>`).join('');
+ned.parentNode.insertBefore(t,ned);
+const primeni=()=>{[...ned.children].forEach((d,i)=>d.classList.toggle('aktivan',i===akt)); [...t.children].forEach((b,i)=>b.setAttribute('aria-pressed',String(i===akt))); if(innerWidth<=760){const d=ned.children[akt]; if(d&&!d.querySelector('.termin[aria-pressed="true"]')){const x=d.querySelector('.termin'); if(x) setTimeout(()=>x.click(),0);}}};
+t.addEventListener('click',e=>{const b=e.target.closest('button'); if(!b) return; akt=[...t.children].indexOf(b); primeni();});
+new MutationObserver(primeni).observe(ned,{childList:true}); primeni();})();
+/* Ivana: logo u heroju se iscrtava odmah po učitavanju */
+(()=>{const h=document.querySelector('.hero-znak .iv-anim'); if(h) requestAnimationFrame(()=>setTimeout(()=>h.classList.add('go'),250));})();
