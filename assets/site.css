@@ -853,7 +853,7 @@ svg.f-ime text{fill:#2A8C83}
 .hero h1{font-size:clamp(3rem,5.6vw,5.4rem)}
 .hero{background:#167A72;min-height:100svh}
 .hero::before{display:none}
-.hero picture{position:absolute;inset:0 0 0 46%}
+.hero picture{position:absolute;inset:0 0 0 46%;width:auto;left:46%;right:0}
 .hero picture img{object-position:88% 28%}
 .hero h1,.hero .lead,.hero .trust,.hero .trust span{color:#fff}
 .hero .lead{color:#E3F2EF}
@@ -870,7 +870,7 @@ svg.f-ime text{fill:#2A8C83}
 .top:not(.scrolled) .menu-btn{color:#fff}
 @media (max-width:1100px){
   .hero{min-height:auto}
-  .hero picture{inset:0 0 auto 0;height:52vh}
+  .hero picture{inset:0 0 auto 0;left:0;width:100%;height:52vh}
   .hero .wrap{padding-top:calc(52vh + 2rem)}
   .hero-txt{max-width:40rem}
   .hero-znak{right:-12%;bottom:auto;top:30vh;width:70vw;opacity:.35}
