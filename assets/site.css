@@ -842,3 +842,42 @@ svg.f-ime text{fill:#2A8C83}
 [style*="text-align:center"] h2::after{margin-inline:auto}
 @media (max-width:760px){.p-znak{width:44vw;right:-6%;bottom:4%;opacity:.25}}
 @media (max-width:760px){.p-hero h1{font-size:2.55rem}}
+
+/* ===== B · TAMNI BETON ===== */
+.top,.top.scrolled{background:rgba(30,33,36,.92)!important}
+body{background:#2B2E31 var(--beton-t) repeat;background-size:700px;color:#E9EAE8}
+h1,h2,h3,.lead,.soba li,.program p,.prog-lista p,.osoba p,.sprava p,.brojke span{color:#F1F2F0}
+.muted,.pl-za,.legenda,.cene-nap,.napomena{color:#B9BCBE!important}
+.top.scrolled{background:rgba(36,39,42,.96)}
+.iv-rec b{color:#fff}.iv-rec small{color:#B9BCBE}
+.brand .iv-znak{content:url(/assets/img/iv-mark-svetli.svg)}
+nav.main a{color:#E9EAE8}
+.menu-btn{color:#fff}
+.meni{background:#2B2E31 var(--beton-t);background-size:700px}.meni a{color:#fff}
+.btn-o{color:#fff;border-color:rgba(255,255,255,.35)}
+.btn-t{background:var(--lime-m);color:#1E2124}.btn-t:hover{background:#a8cc5c}
+.hero::before{background:linear-gradient(90deg,rgba(38,41,44,.97) 0%,rgba(38,41,44,.88) 32%,rgba(38,41,44,.3) 56%,rgba(38,41,44,0) 70%)}
+@media (max-width:1100px){.hero::before{background:linear-gradient(180deg,rgba(38,41,44,0) 30%,rgba(38,41,44,.94) 52%,#2B2E31 66%)}}
+.hero-znak{opacity:.32}.hero-znak .p1,.krov .p1,.p-znak .p1{fill:#fff}
+.trust,.trust span{color:#E9EAE8}
+.soba,.dan,.prog-lista li,.sprava,.pravilo,.metode span,.chip,.skok a,.dani-tabs button{background:rgba(255,255,255,.07)!important;color:#F1F2F0}
+.chip,.skok a{border-color:rgba(255,255,255,.22)}
+.chip[aria-pressed="true"],.dani-tabs button[aria-pressed="true"]{background:var(--lime-m)!important;color:#1E2124}
+.soba-link,.pl-link,.pl-cena{color:var(--lime-m)}
+.termin{background:rgba(255,255,255,.06);color:#F1F2F0}
+.termin[aria-pressed="true"]{background:var(--terakota);color:#fff}
+.dan.danas{background:var(--teal-t)!important}
+.kljuc,.forma{background:#E9EAE8 var(--beton-s);background-size:700px;color:#26292C}
+.kljuc h3,.forma h3,.kljuc p,.forma p,.forma label,.kljuc label{color:#26292C}
+.kljuc .btn-t,.forma .btn-t{background:var(--terakota);color:#fff}
+.cene,.kontakt{background:#1F2225 var(--beton-t);background-size:700px}
+.blok:nth-of-type(even){background:rgba(0,0,0,.18)}
+.p-hero{background:rgba(0,0,0,.12)}
+.mrvice a{color:#B9BCBE}
+.brojke b,.edu-cinjenice b{color:var(--lime-m)}
+.tabela{background:rgba(255,255,255,.06)}.tabela th,.tabela td{color:#F1F2F0}.tabela thead th{background:rgba(255,255,255,.1)}
+.vodic-odgovor{color:var(--lime-m)}
+main section h2::after{background:var(--lime-m)}
+footer{background:#18191B}
+svg.f-ime text{fill:var(--lime-m);opacity:.9}
+.sediste:not(:disabled){background:color-mix(in srgb,var(--lime-m) 55%,#fff)}
