@@ -842,3 +842,47 @@ svg.f-ime text{fill:#2A8C83}
 [style*="text-align:center"] h2::after{margin-inline:auto}
 @media (max-width:760px){.p-znak{width:44vw;right:-6%;bottom:4%;opacity:.25}}
 @media (max-width:760px){.p-hero h1{font-size:2.55rem}}
+
+/* ===== C · TEAL POLJE ===== */
+.top,.top.scrolled{background:#167A72!important}
+.top nav.main a,.top .iv-rec b{color:#fff!important}
+.top .iv-rec small{color:#CFE7E3!important}
+.top .brand .iv-znak{content:url(/assets/img/iv-mark-svetli.svg)}
+.top .btn-t{background:var(--lime-m)!important;color:#1E2124!important}
+.top .menu-btn{color:#fff}
+.hero h1{font-size:clamp(3rem,5.6vw,5.4rem)}
+.hero{background:#167A72;min-height:100svh}
+.hero::before{display:none}
+.hero picture{position:absolute;inset:0 0 0 46%}
+.hero picture img{object-position:88% 28%}
+.hero h1,.hero .lead,.hero .trust,.hero .trust span{color:#fff}
+.hero .lead{color:#E3F2EF}
+.hero .btn-t{background:var(--lime-m);color:#1E2124}
+.hero .btn-o{color:#fff;border-color:rgba(255,255,255,.5)}
+.hero-znak{left:auto;right:56%;top:auto;bottom:-6%;width:min(40vw,560px);opacity:1}
+.hero-znak .p1{fill:#0F5C55}
+.hero .dot{background:var(--lime-m)}
+.hero-txt{max-width:min(36rem,40vw)}
+.top:not(.scrolled) nav.main a,.top:not(.scrolled) .iv-rec b{color:#fff}
+.top:not(.scrolled) .iv-rec small{color:#CFE7E3}
+.top:not(.scrolled) .brand .iv-znak{content:url(/assets/img/iv-mark-svetli.svg)}
+.top:not(.scrolled) .btn-t{background:var(--lime-m);color:#1E2124}
+.top:not(.scrolled) .menu-btn{color:#fff}
+@media (max-width:1100px){
+  .hero{min-height:auto}
+  .hero picture{inset:0 0 auto 0;height:52vh}
+  .hero .wrap{padding-top:calc(52vh + 2rem)}
+  .hero-txt{max-width:40rem}
+  .hero-znak{right:-12%;bottom:auto;top:30vh;width:70vw;opacity:.35}
+}
+/* programi na punom teal polju */
+.sobe{background:#167A72 var(--beton-t);background-blend-mode:soft-light;background-size:700px}
+.sobe h2,.sobe .lead,.sobe #vodic-pitanje,.sobe .vodic-odgovor{color:#fff}
+.sobe h2::after{background:var(--lime-m)}
+.sobe .chip{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.3)}
+.sobe .chip[aria-pressed="true"]{background:var(--lime-m);color:#1E2124}
+.sobe .soba{background:#fff}
+/* veliki naslovi, oštriji uglovi */
+h2{font-size:clamp(2.4rem,5.2vw,4.4rem)}
+.soba,.kljuc,.forma,.cena,.prog-lista li,.dan,.blok-slika,.soba-slika,.tim-foto,.c-slika,.e-foto img,.btn,.chip{border-radius:6px!important}
+.btn{border-radius:4px!important}
